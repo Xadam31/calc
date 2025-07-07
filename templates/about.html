@@ -1,67 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>About - Calculator Web App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>About - Calculator Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(128, 0, 128, 0.4); /* subtle purple glow */
+    }
+
+    h1, h2 {
+      color: #bb86fc;
+      text-align: center;
+    }
+
+    ul {
+      line-height: 1.8;
+    }
+
+    a.button-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    a.button-link:hover {
+      background-color: #3700b3;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      display: none;
+      z-index: 9999;
+    }
+
+    #cookie-banner button {
+      margin-left: 1em;
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #cookie-banner button:hover {
+      background-color: #3700b3;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <h1>About This Calculator</h1>
     <p>
-        Welcome to the Calculator Web App! This tool is designed to help you perform fast and accurate calculations right from your browser.
-        Whether you're solving basic arithmetic or need a quick solution for more complex equations, this app makes it easy and accessible.
+      Welcome to <strong>XCalc</strong> — the next-gen calculator experience right in your browser!
+      Designed for speed, accuracy, and simplicity, it’s perfect for students, parents, and anyone who needs to crunch numbers fast.
     </p>
-    
+
     <h2>Key Features:</h2>
     <ul>
-        <li>Support for 2-number and 3-number expressions</li>
-        <li>Handles addition, subtraction, multiplication, and division</li>
-        <li>Includes calculation history for quick review</li>
-        <li>Clean and simple design optimized for any device</li>
+      <li>Support for 2-number and 3-number expressions</li>
+      <li>Handles addition, subtraction, multiplication, and division</li>
+      <li>Calculation history for quick review</li>
+      <li>Optimized layout for mobile and desktop</li>
     </ul>
 
     <h2>Why It Exists:</h2>
     <p>
-        This app was created as a fun and useful project to make calculations easier for everyone.
-        It's ideal for students, parents, and anyone who needs a fast calculator without installing anything.
+      This app started as a fun project and became a powerful tool for everyday use.
+      We’re always working on improvements — your feedback helps it grow!
     </p>
 
-    <p>
-        We’re always working on improvements and new features. If you have suggestions or feedback, feel free to reach out!
-    </p>
+    <div style="text-align: center;">
+      <a href="https://calc-ngqa.onrender.com/" class="button-link">🔙 Go to Calculator</a>
+    </div>
+  </div>
 
-<p>
-  <a href="https://calc-ngqa.onrender.com/" style="text-decoration: none;">
-    <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
-      Go to Calculator
-    </button>
-  </a>
-</p>
+  <!-- Consent Banner -->
+  <div id="cookie-banner">
+    This site uses cookies to serve ads and analyze traffic. By continuing, you consent to this use.
+    <button onclick="acceptCookies()">Accept</button>
+  </div>
 
-
-
-
-
- 
-
-<!-- Consent Banner -->
-<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: white; text-align: center; padding: 1em; display: none; z-index: 9999;">
-  This site uses cookies to serve ads and analyze traffic. By continuing, you consent to this use.
-  <button onclick="acceptCookies()" style="margin-left: 1em;">Accept</button>
-</div>
-
-<script>
-  function acceptCookies() {
-    localStorage.setItem("cookieConsent", "true");
-    document.getElementById("cookie-banner").style.display = "none";
-  }
-
-  window.onload = function () {
-    if (!localStorage.getItem("cookieConsent")) {
-      document.getElementById("cookie-banner").style.display = "block";
+  <script>
+    function acceptCookies() {
+      localStorage.setItem("cookieConsent", "true");
+      document.getElementById("cookie-banner").style.display = "none";
     }
-  };
-</script>
 
+    window.onload = function () {
+      if (!localStorage.getItem("cookieConsent")) {
+        document.getElementById("cookie-banner").style.display = "block";
+      }
+    };
+  </script>
 </body>
 </html>
