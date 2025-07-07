@@ -31,6 +31,24 @@
     </p>
 
     <button onclick="location.href='index.html'">back to calculator</button>
+<!-- Consent Banner -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: white; text-align: center; padding: 1em; display: none; z-index: 9999;">
+  This site uses cookies to serve ads and analyze traffic. By continuing, you consent to this use.
+  <button onclick="acceptCookies()" style="margin-left: 1em;">Accept</button>
+</div>
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem("cookieConsent", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+
+  window.onload = function () {
+    if (!localStorage.getItem("cookieConsent")) {
+      document.getElementById("cookie-banner").style.display = "block";
+    }
+  };
+</script>
 
 </body>
 </html>
