@@ -11,6 +11,20 @@
 
     <style>
         body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        body.light {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body {
             background-color: #0e0e0e;
             color: #e0e0ff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -117,7 +131,6 @@
             text-decoration: underline;
         }
 
-        /* Consent Banner */
         #cookie-banner {
             position: fixed;
             bottom: 0;
@@ -146,17 +159,16 @@
         }
     </style>
 </head>
-<body>
+<body class="dark">
 
     <h1>XCalc</h1>
-   <p>
-  <a href="https://calc-ngqa.onrender.com/about" style="text-decoration: none;">
-    <button class="nav-button" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
-      About
-    </button>
-  </a>
-</p>
 
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button onclick="toggleTheme()" class="nav-button">Switch Theme</button>
+        <a href="/about">
+            <button class="nav-button">About</button>
+        </a>
+    </div>
 
     <div class="container">
         <form method="POST">
@@ -218,10 +230,21 @@
             document.getElementById("cookie-banner").style.display = "none";
         }
 
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle("dark");
+            body.classList.toggle("light");
+            localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+        }
+
         window.onload = function () {
             if (!localStorage.getItem("cookieConsent")) {
                 document.getElementById("cookie-banner").style.display = "block";
             }
+
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            document.body.classList.remove("dark", "light");
+            document.body.classList.add(savedTheme);
         };
     </script>
 </body>
