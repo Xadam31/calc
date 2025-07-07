@@ -98,6 +98,9 @@ def calculator():
             error = "Error: " + str(e)
 
     return render_template("index.html", result=result, error=error, history=history)
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
