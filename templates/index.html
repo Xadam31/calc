@@ -15,14 +15,77 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
-        h1 { text-align: center; }
-        .result, .error, .history { margin-top: 20px; padding: 10px; }
-        .result { background-color: #e0ffe0; }
-        .error { background-color: #ffe0e0; }
-        .history { background-color: #f0f0f0; }
-    </style>
+ <style>
+  body {
+    background-color: #121212;
+    color: #f1f1f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  }
+
+  input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #333;
+    color: #f1f1f1;
+    border: 1px solid #555;
+    border-radius: 5px;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #2196f3;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #1976d2;
+  }
+
+  h1, h2 {
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .history {
+    margin-top: 20px;
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+
+  .error {
+    color: #ff5252;
+  }
+
+  .result {
+    color: #4caf50;
+    font-weight: bold;
+  }
+
+  a {
+    color: #90caf9;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
 </head>
 <body>
     <h1>Calculator</h1>
