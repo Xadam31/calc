@@ -1,176 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta charset="UTF-8">
-    <title>Flask Calculator</title>
-<link rel="icon" href="favicon.ico">
+    <title>XCalc - Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico">
 
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4805141450124520" crossorigin="anonymous"></script>
 
+    <style>
+        body {
+            background-color: #0e0e0e;
+            color: #e0e0ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!-- AdSense Ad Unit -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="https://calc-ngqa.onrender.com/"
-     data-ad-slot="1234567890"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-     
-</script>
-<head>
-  <!-- AdSense verification tag -->
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4805141450124520"
-     crossorigin="anonymous"></script>
-  ...
-</head>
+        h1 {
+            text-align: center;
+            color: #bb86fc;
+            margin-top: 20px;
+        }
 
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #6200ea;
+        }
 
- <style>
-  body {
-    background-color: #121212;
-    color: #f1f1f1;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+        label, input, select, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
 
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  }
+        input, select {
+            padding: 10px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #e0e0ff;
+            border-radius: 5px;
+        }
 
-  input, select, button {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background-color: #333;
-    color: #f1f1f1;
-    border: 1px solid #555;
-    border-radius: 5px;
-  }
+        button {
+            padding: 12px;
+            background: linear-gradient(135deg, #7b1fa2, #512da8);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-  button {
-    cursor: pointer;
-    background-color: #2196f3;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
+        button:hover {
+            background: linear-gradient(135deg, #9c27b0, #673ab7);
+        }
 
-  button:hover {
-    background-color: #1976d2;
-  }
+        .result {
+            margin-top: 20px;
+            color: #00e676;
+            font-size: 1.2em;
+            text-shadow: 0 0 5px #00e676;
+        }
 
-  h1, h2 {
-    color: #ffffff;
-    text-align: center;
-  }
+        .error {
+            margin-top: 20px;
+            color: #ff5252;
+            font-size: 1.1em;
+        }
 
-  .history {
-    margin-top: 20px;
-    background-color: #2a2a2a;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 0.9em;
-  }
+        .history {
+            margin-top: 30px;
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+        }
 
-  .error {
-    color: #ff5252;
-  }
+        .history ul {
+            list-style: none;
+            padding: 0;
+        }
 
-  .result {
-    color: #4caf50;
-    font-weight: bold;
-  }
+        .history li {
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+        }
 
-  a {
-    color: #90caf9;
-    text-decoration: none;
-  }
+        .nav-button {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 10px 20px;
+            background-color: #03dac6;
+            border: none;
+            border-radius: 5px;
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-  a:hover {
-    text-decoration: underline;
-  }
-</style>
+        .nav-button:hover {
+            background-color: #00bfa5;
+        }
 
+        a {
+            color: #82b1ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Consent Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            display: none;
+            z-index: 9999;
+            border-top: 2px solid #bb86fc;
+        }
+
+        #cookie-banner button {
+            margin-left: 1em;
+            background-color: #6200ea;
+            border: none;
+            padding: 8px 16px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #cookie-banner button:hover {
+            background-color: #3700b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Calculator</h1>
-    <button onclick="window.location.href='/about'" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-  About
-</button>
 
-    <form method="POST">
-        <label>Operation Type:</label><br>
-        <input type="radio" name="type" value="two" checked> Two Numbers
-        <input type="radio" name="type" value="three"> Three Numbers
-        <br><br>
+    <h1>XCalc</h1>
+    <button class="nav-button" onclick="window.location.href='about.html'">About</button>
 
-        <label>First Number:</label><br>
-        <input type="number" step="any" name="num1" required><br><br>
+    <div class="container">
+        <form method="POST">
+            <label>Operation Type:</label>
+            <input type="radio" name="type" value="two" checked> Two Numbers
+            <input type="radio" name="type" value="three"> Three Numbers
 
-        <label>Operator 1 (+, -, *, /):</label><br>
-        <input type="text" name="op1" required><br><br>
+            <label>First Number:</label>
+            <input type="number" step="any" name="num1" required>
 
-        <label>Second Number:</label><br>
-        <input type="number" step="any" name="num2" required><br><br>
+            <label>Operator 1 (+, -, *, /):</label>
+            <input type="text" name="op1" required>
 
-        <label>Third Number (optional):</label><br>
-        <input type="number" step="any" name="num3"><br><br>
+            <label>Second Number:</label>
+            <input type="number" step="any" name="num2" required>
 
-        <label>Operator 2 (optional):</label><br>
-        <input type="text" name="op2"><br><br>
+            <label>Third Number (optional):</label>
+            <input type="number" step="any" name="num3">
 
-        <button type="submit">Calculate</button>
-    </form>
+            <label>Operator 2 (optional):</label>
+            <input type="text" name="op2">
 
-    {% if result is not none %}
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if result is not none %}
         <div class="result">
             <strong>Result:</strong> {{ result }}
         </div>
-    {% endif %}
+        {% endif %}
 
-    {% if error %}
+        {% if error %}
         <div class="error">
             <strong>Error:</strong> {{ error }}
         </div>
-    {% endif %}
+        {% endif %}
 
-    {% if history %}
+        {% if history %}
         <div class="history">
             <strong>History:</strong>
             <ul>
                 {% for entry in history %}
-                    <li>{{ entry }}</li>
+                <li>{{ entry }}</li>
                 {% endfor %}
             </ul>
         </div>
-    {% endif %}
+        {% endif %}
+    </div>
+
     <!-- Consent Banner -->
-<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background: #222; color: white; text-align: center; padding: 1em; display: none; z-index: 9999;">
-  This site uses cookies to serve ads and analyze traffic. By continuing, you consent to this use.
-  <button onclick="acceptCookies()" style="margin-left: 1em;">Accept</button>
-</div>
+    <div id="cookie-banner">
+        This site uses cookies to serve ads and analyze traffic. By continuing, you consent to this use.
+        <button onclick="acceptCookies()">Accept</button>
+    </div>
 
-<script>
-  function acceptCookies() {
-    localStorage.setItem("cookieConsent", "true");
-    document.getElementById("cookie-banner").style.display = "none";
-  }
+    <script>
+        function acceptCookies() {
+            localStorage.setItem("cookieConsent", "true");
+            document.getElementById("cookie-banner").style.display = "none";
+        }
 
-  window.onload = function () {
-    if (!localStorage.getItem("cookieConsent")) {
-      document.getElementById("cookie-banner").style.display = "block";
-    }
-  };
-</script>
-
+        window.onload = function () {
+            if (!localStorage.getItem("cookieConsent")) {
+                document.getElementById("cookie-banner").style.display = "block";
+            }
+        };
+    </script>
 </body>
 </html>
